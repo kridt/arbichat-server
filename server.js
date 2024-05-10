@@ -5,9 +5,12 @@ const socketIo = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, {
+const io = require("socket.io")(server, {
   cors: {
-    origin: "*", // Tilpas dette for at tillade kun ønskede domæner
+    origin: "https://arbichat.vercel.app", // Erstat med det rigtige domæne for din React-app
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
   },
 });
 
